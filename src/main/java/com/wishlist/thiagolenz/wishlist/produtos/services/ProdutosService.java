@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -28,8 +29,16 @@ public class ProdutosService {
     }
 
     public ProdutoEntity update (ProdutoEntity produto) {
+        validarProdutoDuplicadoUpdate(produto);
         ProdutoEntity result = repository.save(produto);
         return result;
+    }
+
+    private void validarProdutoDuplicadoUpdate(ProdutoEntity produto) {
+        Optional<ProdutoEntity> existente = repository.findByProdutoNomeAndClienteId(produto.getNomeProduto(), produto.getClienteId());
+        if (existente.isPresent() && Objects.equals(existente.get().getId(), produto.getId())) {
+            throw new RegistroDuplicadoException("Já existe um produto para esse cliente com esse nome ");
+        }
     }
 
     public List<ProdutoEntity> getAllByCliente (Long clienteId) {

@@ -99,10 +99,25 @@ public class ProdutosServiceTest {
 
     @Test
     void validar_cenario_atualizar_registro_duplicado_error() {
-        ProdutoEntity novoRegistro = new ProdutoEntity();
+        ProdutoEntity existente = new ProdutoEntity(
+                3L,
+                "Monitor",
+                clienteId,
+                new BigDecimal(1500)
+        );
+
+        ProdutoEntity atualizarRegistroErrado = new ProdutoEntity(
+                4L,
+                "Monitor",
+                clienteId,
+                new BigDecimal(1500)
+        );
+        when(repository.findByProdutoNomeAndClienteId(existente.getNomeProduto(), clienteId))
+                .thenReturn(Optional.of(existente));
+
         assertThrows(
                 RegistroDuplicadoException.class,
-                () -> service.create(novoRegistro),
+                () -> service.create(atualizarRegistroErrado),
                 "Esperado uma exception de registro duplicado no update"
         );
     }
