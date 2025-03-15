@@ -7,3 +7,7 @@ spring:
       username: root
       password: lenz
       authentication-database: admin
+
+wishlist:
+  limit:
+    produtos: 20
