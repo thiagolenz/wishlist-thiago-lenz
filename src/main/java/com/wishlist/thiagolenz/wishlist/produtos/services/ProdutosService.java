@@ -32,7 +32,7 @@ public class ProdutosService {
     }
 
     private void validarProdutoDuplicadoCriacao(ProdutoEntity produto) {
-        Optional<ProdutoEntity> existente = repository.findByProdutoNomeAndClienteId(produto.getNomeProduto(), produto.getClienteId());
+        Optional<ProdutoEntity> existente = repository.findByNomeProdutoAndClienteId(produto.getNomeProduto(), produto.getClienteId());
         if (existente.isPresent())
             throw new RegistroDuplicadoException("Já existe um produto para esse cliente com esse nome ");
     }
@@ -44,7 +44,7 @@ public class ProdutosService {
     }
 
     private void validarProdutoDuplicadoUpdate(ProdutoEntity produto) {
-        Optional<ProdutoEntity> existente = repository.findByProdutoNomeAndClienteId(produto.getNomeProduto(), produto.getClienteId());
+        Optional<ProdutoEntity> existente = repository.findByNomeProdutoAndClienteId(produto.getNomeProduto(), produto.getClienteId());
         if (existente.isPresent() && Objects.equals(existente.get().getId(), produto.getId())) {
             throw new RegistroDuplicadoException("Já existe um produto para esse cliente com esse nome ");
         }
@@ -55,6 +55,6 @@ public class ProdutosService {
     }
 
     public Optional<ProdutoEntity> findByProdutoAndClientId(Long clienteId, String nomeProduto) {
-        return repository.findByProdutoNomeAndClienteId(nomeProduto, clienteId);
+        return repository.findByNomeProdutoAndClienteId(nomeProduto, clienteId);
     }
 }

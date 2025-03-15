@@ -2,6 +2,7 @@ package com.wishlist.thiagolenz.wishlist.produtos.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -10,8 +11,14 @@ import java.util.Objects;
 public class ProdutoEntity {
     @Id
     private Long id;
+
+    @Field("nome_produto")
     private String nomeProduto;
+
+    @Field("cliente_id")
     private Long clienteId;
+
+    @Field("preco")
     private BigDecimal preco;
 
     public ProdutoEntity() {

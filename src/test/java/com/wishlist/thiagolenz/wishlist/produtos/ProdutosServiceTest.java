@@ -87,7 +87,7 @@ public class ProdutosServiceTest {
                 clienteId,
                 new BigDecimal(1500)
         );
-        when(repository.findByProdutoNomeAndClienteId(existente.getNomeProduto(), clienteId))
+        when(repository.findByNomeProdutoAndClienteId(existente.getNomeProduto(), clienteId))
                 .thenReturn(Optional.of(existente));
 
         assertThrows(
@@ -112,7 +112,7 @@ public class ProdutosServiceTest {
                 clienteId,
                 new BigDecimal(1500)
         );
-        when(repository.findByProdutoNomeAndClienteId(existente.getNomeProduto(), clienteId))
+        when(repository.findByNomeProdutoAndClienteId(existente.getNomeProduto(), clienteId))
                 .thenReturn(Optional.of(existente));
 
         assertThrows(
@@ -184,7 +184,7 @@ public class ProdutosServiceTest {
                 clienteId,
                 new BigDecimal(1500)
         );
-        when(repository.findByProdutoNomeAndClienteId(existente.getNomeProduto(), clienteId))
+        when(repository.findByNomeProdutoAndClienteId(existente.getNomeProduto(), clienteId))
                 .thenReturn(Optional.of(existente));
 
         Optional<ProdutoEntity> result = service.findByProdutoAndClientId(clienteId, existente.getNomeProduto());
