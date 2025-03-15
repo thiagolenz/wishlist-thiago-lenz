@@ -1,6 +1,7 @@
 package com.wishlist.thiagolenz.wishlist.produtos.facade;
 
 import com.wishlist.thiagolenz.wishlist.produtos.dto.ProdutoDTO;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ProdutosFacade {
         return null;
     }
 
-    public Optional<ProdutoDTO> getByClienteAndNomeProduto(Long clienteId, String nomeProduto) {
+    public Optional<ProdutoDTO> getByClienteAndNomeProduto(Long clienteId, @NotNull String nomeProduto) {
         return null;
     }
 

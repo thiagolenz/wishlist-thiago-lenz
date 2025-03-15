@@ -2,6 +2,7 @@ package com.wishlist.thiagolenz.wishlist.produtos.api;
 
 import com.wishlist.thiagolenz.wishlist.produtos.dto.ProdutoDTO;
 import com.wishlist.thiagolenz.wishlist.produtos.facade.ProdutosFacade;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +15,12 @@ public class ProdutosAPI {
     @Autowired private ProdutosFacade facade;
 
     @PostMapping
-    public ProdutoDTO create (@RequestBody ProdutoDTO produto) {
+    public ProdutoDTO create (@Valid @RequestBody ProdutoDTO produto) {
         return facade.create(produto);
     }
 
     @PutMapping("/{produtoId}")
-    public ProdutoDTO update (@RequestBody ProdutoDTO produto) {
+    public ProdutoDTO update (@Valid @RequestBody ProdutoDTO produto) {
         return facade.update(produto);
     }
 

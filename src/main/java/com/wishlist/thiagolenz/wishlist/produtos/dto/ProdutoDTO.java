@@ -1,13 +1,19 @@
 package com.wishlist.thiagolenz.wishlist.produtos.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 
 public class ProdutoDTO {
     private Long id;
+
+    @NotNull
     private String nomeProduto;
 
+    @NotNull
     private Long clienteId;
 
+    @NotNull
     private BigDecimal preco;
 
     public ProdutoDTO() {
