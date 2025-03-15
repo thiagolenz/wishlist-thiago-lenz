@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/produtos/v1")
-public class ProdutoAPI {
+public class ProdutosAPI {
     @PostMapping
     public ProdutoDTO create (@RequestBody ProdutoDTO produto) {
         return null;
@@ -24,14 +24,16 @@ public class ProdutoAPI {
         return null;
     }
 
-    @GetMapping("/cliente/{clienteId}/produto/{nomeProduto}")
+    @GetMapping("/cliente/{clienteId}/search")
     public Optional<ProdutoDTO> getByClienteAndNomeProduto (
             @PathVariable("clienteId") Long clienteId,
-            @PathVariable("nomeProduto") String nomeProduto) {
+            @RequestParam("nomeProduto") String nomeProduto) {
+        //TODO VALIDAR SE nomeProduto foi informado
         return null;
     }
 
     @DeleteMapping("/{produtoId}")
     public void deleteByProdutoId (@PathVariable("produtoId") Long produtoId) {
+        //TODO delete não foi implementado
     }
 }

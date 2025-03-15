@@ -192,4 +192,30 @@ public class ProdutosServiceTest {
         assertEquals(result.get(), existente);
     }
 
+    @Test
+    void validar_cenario_excluir_registro_existente() {
+        ProdutoEntity existente = new ProdutoEntity(
+                3L,
+                "Monitor",
+                clienteId,
+                new BigDecimal(1500)
+        );
+        when(repository.findById(existente.getId())).thenReturn(Optional.of(existente));
+
+        boolean excluiu = service.deleteById(existente.getId());
+        assertTrue(excluiu);
+    }
+
+    @Test
+    void validar_cenario_excluir_registro_nao_existente() {
+        ProdutoEntity existente = new ProdutoEntity(
+                3L,
+                "Monitor",
+                clienteId,
+                new BigDecimal(1500)
+        );
+        boolean excluiu = service.deleteById(existente.getId());
+        assertFalse(excluiu);
+    }
+
 }

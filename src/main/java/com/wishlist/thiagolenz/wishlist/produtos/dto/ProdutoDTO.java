@@ -1,37 +1,20 @@
-package com.wishlist.thiagolenz.wishlist.produtos.model;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+package com.wishlist.thiagolenz.wishlist.produtos.dto;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
-@Document("produtos")
-public class ProdutoEntity {
-    @Id
+public class ProdutoDTO {
     private Long id;
-
-    @Field("nome_produto")
     private String nomeProduto;
 
-    @Field("cliente_id")
     private Long clienteId;
 
-    @Field("preco")
     private BigDecimal preco;
 
-    public ProdutoEntity() {
+    public ProdutoDTO() {
     }
 
-    public ProdutoEntity(Long id, String nomeProduto, Long clienteId, BigDecimal preco) {
+    public ProdutoDTO(Long id, String nomeProduto, Long clienteId, BigDecimal preco) {
         this.id = id;
-        this.nomeProduto = nomeProduto;
-        this.clienteId = clienteId;
-        this.preco = preco;
-    }
-
-    public ProdutoEntity(String nomeProduto, Long clienteId, BigDecimal preco) {
         this.nomeProduto = nomeProduto;
         this.clienteId = clienteId;
         this.preco = preco;
@@ -67,17 +50,5 @@ public class ProdutoEntity {
 
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        ProdutoEntity that = (ProdutoEntity) o;
-        return Objects.equals(nomeProduto, that.nomeProduto) && Objects.equals(clienteId, that.clienteId) && Objects.equals(preco, that.preco);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(nomeProduto, clienteId, preco);
     }
 }

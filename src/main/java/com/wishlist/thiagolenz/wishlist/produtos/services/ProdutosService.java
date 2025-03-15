@@ -57,4 +57,13 @@ public class ProdutosService {
     public Optional<ProdutoEntity> findByProdutoAndClientId(Long clienteId, String nomeProduto) {
         return repository.findByNomeProdutoAndClienteId(nomeProduto, clienteId);
     }
+
+    public boolean deleteById (Long id) {
+        Optional<ProdutoEntity> existente = repository.findById(id);
+        if (existente.isPresent()) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }
