@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ProdutosServiceTest {
+public class ProdutosServiceRegrasTest {
     @Mock
     ProdutosRepository repository;
 

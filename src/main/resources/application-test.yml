@@ -1,0 +1,13 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: wishlist
+      username: mongojunit
+      password: mongojunitpwd
+      authentication-database: admin
+
+wishlist:
+  limit:
+    produtos: 20
