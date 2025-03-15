@@ -15,7 +15,8 @@ public class ProdutosService {
     private ProdutosRepository repository;
 
     public ProdutoEntity create (ProdutoEntity produto) {
-        return null;
+        ProdutoEntity result = repository.save(produto);
+        return result;
     }
 
     public ProdutoEntity update (ProdutoEntity produto) {

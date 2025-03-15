@@ -3,27 +3,52 @@ package com.wishlist.thiagolenz.wishlist.produtos;
 import com.wishlist.thiagolenz.wishlist.exception.LimiteProdutosException;
 import com.wishlist.thiagolenz.wishlist.exception.RegistroDuplicadoException;
 import com.wishlist.thiagolenz.wishlist.produtos.model.ProdutoEntity;
+import com.wishlist.thiagolenz.wishlist.produtos.model.ProdutosRepository;
 import com.wishlist.thiagolenz.wishlist.produtos.services.ProdutosService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class ProdutosServiceTest {
+    @Mock
+    ProdutosRepository repository;
 
-    ProdutosService service = new ProdutosService();
+    @InjectMocks
+    ProdutosService service;
+
+    Long clienteId = 1L;
 
     @Test
     void validar_cenario_criar_registro_sucesso() {
-        ProdutoEntity request = new ProdutoEntity();
+        ProdutoEntity expectedResult = new ProdutoEntity(
+                1L,
+                "Mouse",
+                clienteId,
+                new BigDecimal(100)
+        );
+        ProdutoEntity request = new ProdutoEntity(
+                "Mouse",
+                clienteId,
+                new BigDecimal(100)
+        );
+        when(repository.save(request)).thenReturn(expectedResult);
+
         ProdutoEntity result = service.create(request);
+
         assertNotNull(result);
+        assertEquals(result, expectedResult);
+        assertEquals(result, request);
     }
 
     @Test
