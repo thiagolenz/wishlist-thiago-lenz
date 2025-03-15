@@ -51,10 +51,10 @@ public class ProdutosService {
     }
 
     public List<ProdutoEntity> getAllByCliente (Long clienteId) {
-        return null;
+        return repository.findByClienteId(clienteId);
     }
 
     public Optional<ProdutoEntity> findByProdutoAndClientId(Long clienteId, String nomeProduto) {
-        return Optional.empty();
+        return repository.findByProdutoNomeAndClienteId(nomeProduto, clienteId);
     }
 }

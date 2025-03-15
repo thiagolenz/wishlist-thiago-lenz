@@ -152,8 +152,16 @@ public class ProdutosServiceTest {
 
     @Test
     void validar_cenario_buscar_todos_registros_sucesso() {
-        Long clienteId = 1L;
         List<ProdutoEntity> esperadosMock = new ArrayList<>();
+        for (long i = 0; i < 10; i++) {
+            esperadosMock.add(new ProdutoEntity(
+                    i,
+                    "Monitor",
+                    clienteId,
+                    new BigDecimal(1500 * i))
+            );
+        }
+        when(repository.findByClienteId(clienteId)).thenReturn(esperadosMock);
         List<ProdutoEntity> produtos = service.getAllByCliente(clienteId);
         assertNotNull(produtos);
         assertEquals(produtos.size(), esperadosMock.size());
@@ -170,10 +178,18 @@ public class ProdutosServiceTest {
 
     @Test
     void validar_cenario_buscar_registro_por_cliente() {
-        Long clienteId = 1L;
-        ProdutoEntity produtoEsperadoMock = new ProdutoEntity();
-        Optional<ProdutoEntity> result = service.findByProdutoAndClientId(clienteId, produtoEsperadoMock.getNomeProduto());
+        ProdutoEntity existente = new ProdutoEntity(
+                3L,
+                "Monitor",
+                clienteId,
+                new BigDecimal(1500)
+        );
+        when(repository.findByProdutoNomeAndClienteId(existente.getNomeProduto(), clienteId))
+                .thenReturn(Optional.of(existente));
+
+        Optional<ProdutoEntity> result = service.findByProdutoAndClientId(clienteId, existente.getNomeProduto());
         assertTrue(result.isPresent());
+        assertEquals(result.get(), existente);
     }
 
 }
