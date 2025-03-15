@@ -124,10 +124,28 @@ public class ProdutosServiceTest {
 
     @Test
     void validar_cenario_criar_registro_limite_produtos_error() {
-        ProdutoEntity existente = new ProdutoEntity();
+        List<ProdutoEntity> list20 = new ArrayList<>();
+        for (long i = 0; i < 20; i++) {
+            list20.add(new ProdutoEntity(
+                    i,
+                    "Monitor",
+                    clienteId,
+                    new BigDecimal(1500 * i))
+            );
+        }
+
+        when(repository.findByClienteId(clienteId)).thenReturn(list20);
+
+        ProdutoEntity novoRegistroAlemDos20 = new ProdutoEntity(
+                4L,
+                "Monitor",
+                clienteId,
+                new BigDecimal(1500)
+        );
+
         assertThrows(
                 LimiteProdutosException.class,
-                () -> service.create(existente),
+                () -> service.create(novoRegistroAlemDos20),
                 "Esperado uma exception de limite de produtos"
         );
     }
