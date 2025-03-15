@@ -36,7 +36,7 @@ public class ProdutosFacade {
         return produto.map(this::convertToDTO);
     }
 
-    public void deleteByProdutoId(Long produtoId) {
+    public void deleteByProdutoId(String produtoId) {
         service.deleteById(produtoId);
     }
 

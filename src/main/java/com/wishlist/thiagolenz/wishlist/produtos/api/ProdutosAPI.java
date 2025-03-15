@@ -38,7 +38,7 @@ public class ProdutosAPI {
     }
 
     @DeleteMapping("/{produtoId}")
-    public void deleteByProdutoId (@PathVariable("produtoId") Long produtoId) {
+    public void deleteByProdutoId (@PathVariable("produtoId") String produtoId) {
         facade.deleteByProdutoId(produtoId);
     }
 }

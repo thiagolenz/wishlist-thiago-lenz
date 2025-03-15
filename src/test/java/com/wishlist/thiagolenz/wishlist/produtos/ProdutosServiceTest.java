@@ -32,7 +32,7 @@ public class ProdutosServiceTest {
     @Test
     void validar_cenario_criar_registro_sucesso() {
         ProdutoEntity expectedResult = new ProdutoEntity(
-                1L,
+                "1",
                 "Mouse",
                 clienteId,
                 new BigDecimal(100)
@@ -54,13 +54,13 @@ public class ProdutosServiceTest {
     @Test
     void validar_cenario_atualizar_registro_sucesso() {
         ProdutoEntity expectedResult = new ProdutoEntity(
-                2L,
+                "2",
                 "Teclado",
                 clienteId,
                 new BigDecimal(200)
         );
         ProdutoEntity request = new ProdutoEntity(
-                2L,
+                "2",
                 "Teclado",
                 clienteId,
                 new BigDecimal(200)
@@ -77,7 +77,7 @@ public class ProdutosServiceTest {
     @Test
     void validar_cenario_criar_registro_duplicado_error() {
         ProdutoEntity existente = new ProdutoEntity(
-                3L,
+                "3",
                 "Monitor",
                 clienteId,
                 new BigDecimal(1500)
@@ -100,14 +100,14 @@ public class ProdutosServiceTest {
     @Test
     void validar_cenario_atualizar_registro_duplicado_error() {
         ProdutoEntity existente = new ProdutoEntity(
-                3L,
+                "3",
                 "Monitor",
                 clienteId,
                 new BigDecimal(1500)
         );
 
         ProdutoEntity atualizarRegistroErrado = new ProdutoEntity(
-                4L,
+                "4",
                 "Monitor",
                 clienteId,
                 new BigDecimal(1500)
@@ -127,7 +127,7 @@ public class ProdutosServiceTest {
         List<ProdutoEntity> list20 = new ArrayList<>();
         for (long i = 0; i < 20; i++) {
             list20.add(new ProdutoEntity(
-                    i,
+                    ""+i,
                     "Monitor",
                     clienteId,
                     new BigDecimal(1500 * i))
@@ -137,7 +137,7 @@ public class ProdutosServiceTest {
         when(repository.findByClienteId(clienteId)).thenReturn(list20);
 
         ProdutoEntity novoRegistroAlemDos20 = new ProdutoEntity(
-                4L,
+                "4",
                 "Monitor",
                 clienteId,
                 new BigDecimal(1500)
@@ -155,7 +155,7 @@ public class ProdutosServiceTest {
         List<ProdutoEntity> esperadosMock = new ArrayList<>();
         for (long i = 0; i < 10; i++) {
             esperadosMock.add(new ProdutoEntity(
-                    i,
+                    ""+i,
                     "Monitor",
                     clienteId,
                     new BigDecimal(1500 * i))
@@ -179,7 +179,7 @@ public class ProdutosServiceTest {
     @Test
     void validar_cenario_buscar_registro_por_cliente() {
         ProdutoEntity existente = new ProdutoEntity(
-                3L,
+                "3",
                 "Monitor",
                 clienteId,
                 new BigDecimal(1500)
@@ -195,7 +195,7 @@ public class ProdutosServiceTest {
     @Test
     void validar_cenario_excluir_registro_existente() {
         ProdutoEntity existente = new ProdutoEntity(
-                3L,
+                "3",
                 "Monitor",
                 clienteId,
                 new BigDecimal(1500)
@@ -209,7 +209,7 @@ public class ProdutosServiceTest {
     @Test
     void validar_cenario_excluir_registro_nao_existente() {
         ProdutoEntity existente = new ProdutoEntity(
-                3L,
+                "3",
                 "Monitor",
                 clienteId,
                 new BigDecimal(1500)

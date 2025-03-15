@@ -10,7 +10,7 @@ import java.util.Objects;
 @Document("produtos")
 public class ProdutoEntity {
     @Id
-    private Long id;
+    private String id;
 
     @Field("nome_produto")
     private String nomeProduto;
@@ -24,7 +24,7 @@ public class ProdutoEntity {
     public ProdutoEntity() {
     }
 
-    public ProdutoEntity(Long id, String nomeProduto, Long clienteId, BigDecimal preco) {
+    public ProdutoEntity(String id, String nomeProduto, Long clienteId, BigDecimal preco) {
         this.id = id;
         this.nomeProduto = nomeProduto;
         this.clienteId = clienteId;
@@ -37,11 +37,11 @@ public class ProdutoEntity {
         this.preco = preco;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

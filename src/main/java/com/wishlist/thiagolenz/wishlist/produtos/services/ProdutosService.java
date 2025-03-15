@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ProdutosService {
@@ -21,6 +22,7 @@ public class ProdutosService {
     public ProdutoEntity create (ProdutoEntity produto) {
         validarLimiteRegistros(produto.getClienteId());
         validarProdutoDuplicadoCriacao(produto);
+        produto.setId(UUID.randomUUID().toString());
         ProdutoEntity result = repository.save(produto);
         return result;
     }
@@ -58,7 +60,7 @@ public class ProdutosService {
         return repository.findByNomeProdutoAndClienteId(nomeProduto, clienteId);
     }
 
-    public boolean deleteById (Long id) {
+    public boolean deleteById (String id) {
         Optional<ProdutoEntity> existente = repository.findById(id);
         if (existente.isPresent()) {
             repository.deleteById(id);
