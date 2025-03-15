@@ -53,9 +53,25 @@ public class ProdutosServiceTest {
 
     @Test
     void validar_cenario_atualizar_registro_sucesso() {
-        ProdutoEntity existente = new ProdutoEntity();
-        ProdutoEntity result = service.update(existente);
+        ProdutoEntity expectedResult = new ProdutoEntity(
+                2L,
+                "Teclado",
+                clienteId,
+                new BigDecimal(200)
+        );
+        ProdutoEntity request = new ProdutoEntity(
+                2L,
+                "Teclado",
+                clienteId,
+                new BigDecimal(200)
+        );
+        when(repository.save(request)).thenReturn(expectedResult);
+
+        ProdutoEntity result = service.update(request);
+
         assertNotNull(result);
+        assertEquals(result, expectedResult);
+        assertEquals(result, request);
     }
 
     @Test

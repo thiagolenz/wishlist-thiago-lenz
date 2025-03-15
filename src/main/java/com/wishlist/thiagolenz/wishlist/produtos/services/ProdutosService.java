@@ -20,7 +20,8 @@ public class ProdutosService {
     }
 
     public ProdutoEntity update (ProdutoEntity produto) {
-        return null;
+        ProdutoEntity result = repository.save(produto);
+        return result;
     }
 
     public List<ProdutoEntity> getAllByCliente (Long clienteId) {
