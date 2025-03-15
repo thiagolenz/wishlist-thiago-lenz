@@ -1,6 +1,8 @@
 package com.wishlist.thiagolenz.wishlist.produtos.api;
 
 import com.wishlist.thiagolenz.wishlist.produtos.dto.ProdutoDTO;
+import com.wishlist.thiagolenz.wishlist.produtos.facade.ProdutosFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,19 +11,21 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/produtos/v1")
 public class ProdutosAPI {
+    @Autowired private ProdutosFacade facade;
+
     @PostMapping
     public ProdutoDTO create (@RequestBody ProdutoDTO produto) {
-        return null;
+        return facade.create(produto);
     }
 
     @PutMapping("/{produtoId}")
     public ProdutoDTO update (@RequestBody ProdutoDTO produto) {
-        return null;
+        return facade.update(produto);
     }
 
     @GetMapping("/cliente/{clienteId}")
     public List<ProdutoDTO> getAllByClienteId (@PathVariable("clienteId") Long clienteId) {
-        return null;
+        return facade.getAllByClienteId(clienteId);
     }
 
     @GetMapping("/cliente/{clienteId}/search")
@@ -29,11 +33,11 @@ public class ProdutosAPI {
             @PathVariable("clienteId") Long clienteId,
             @RequestParam("nomeProduto") String nomeProduto) {
         //TODO VALIDAR SE nomeProduto foi informado
-        return null;
+        return facade.getByClienteAndNomeProduto(clienteId, nomeProduto);
     }
 
     @DeleteMapping("/{produtoId}")
     public void deleteByProdutoId (@PathVariable("produtoId") Long produtoId) {
-        //TODO delete não foi implementado
+        facade.deleteByProdutoId(produtoId);
     }
 }
